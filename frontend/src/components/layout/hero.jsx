@@ -19,14 +19,13 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative w-full h-full overflow-hidden bg-transparent">
+    <section className="relative w-full h-full overflow-hidden ">
       <div className="absolute inset-0 z-0">
         <SoftAurora />
       </div>
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4 gap-10">
         <h1 className="text-6xl font-bold font-mono">Welcome to NexTalk</h1>
-
-        <p className="mt-4 max-w-2xl text-lg opacity-90">
+        <p className="mt-4 max-w-2xl text-xl font-serif opacity-90 text-slate-100/90 ">
           Chat and talk with your people in one place with amazing services and
           an excellent support team
         </p>
