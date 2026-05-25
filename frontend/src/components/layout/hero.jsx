@@ -1,15 +1,28 @@
 import Button from "@/ui/button";
-import SoftAurora from "@/ui/SoftAurora";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loaderapp from "../Loaderapp";
+import SoftAurora from "@/ui/SoftAurora";
 
 export default function Hero() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const handleSignup = () => {
+    setLoading(true);
+    setTimeout(() => {
+      navigate("/signup");
+    }, 2000);
+  };
+  if (loading) {
+    return <Loaderapp />;
+  }
+
   return (
-    <section className="relative w-full h-full overflow-hidden bg-black">
+    <section className="relative w-full h-full overflow-hidden bg-transparent">
       <div className="absolute inset-0 z-0">
         <SoftAurora />
       </div>
-
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4 gap-10">
         <h1 className="text-6xl font-bold font-mono">Welcome to NexTalk</h1>
 
@@ -19,11 +32,15 @@ export default function Hero() {
         </p>
 
         <div className="flex items-center justify-between gap-5">
-          <Button
-            content={"Get Started"}
-            flag={true}
-            onclick={() => navigate("/signup")}
-          />
+          {loading ? (
+            <Loaderapp />
+          ) : (
+            <Button
+              content={"Get Started"}
+              flag={true}
+              onclick={handleSignup}
+            />
+          )}
 
           <Button content={"Learn more"} flag={false} />
         </div>
