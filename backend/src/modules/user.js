@@ -58,16 +58,15 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-
 // then we will have to create a module based on our schema
 const User = mongoose.model("User", userSchema);
 
 // now to make a password hashing with the pre hook with salt and salt importance is to make the main password with some encryption
 userSchema.pre("save", async function (next) {
-    if(!this.isModified("password")) return next(); 
+  if (!this.isModified("password")) return next();
   try {
     const salt = await bcrypt.getSalt(10);
-    this.password = await bcrypt.hash(this.password,salt);
+    this.password = await bcrypt.hash(this.password, salt);
     next();
   } catch (error) {
     next(error);
